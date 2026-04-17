@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Container Guide</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+        .demo-container {
+            background-color: rgba(13, 110, 253, 0.1);
+            border: 2px dashed #0d6efd;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+        .demo-container::before {
+            content: "Current Width";
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-bottom: 0.5rem;
+        }
+        .code-snippet {
+            background: #212529;
+            color: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Standard Container for the Reading Content -->
+    <div class="container bg-white p-5 rounded shadow-sm mb-5">
+        <h1 class="display-5 text-primary mb-4">Understanding <code>container-sm</code></h1>
+        
+        <p class="lead">To understand <code>container-sm</code>, you first need to understand the golden rule of responsive containers in Bootstrap 5.</p>
+
+        <h3 class="mt-4">The Golden Rule</h3>
+        <p>When you use a class like <code>.container-{breakpoint}</code> (like <code>-md</code>, <code>-lg</code>, <code>-xl</code>), you are telling Bootstrap:</p>
+        <blockquote class="border-start border-primary border-4 ps-3 fst-italic bg-light p-3">
+            "Make this container <strong>100% wide (fluid)</strong> on small screens, UNTIL it reaches the specified breakpoint. Once it hits that size, snap to a fixed width and center it."
+        </blockquote>
+
+        <h3 class="mt-4 text-danger">The Big Secret About <code>container-sm</code></h3>
+        <p>Here is why <code>container-sm</code> is confusing: <strong>It behaves exactly the same as the default <code>.container</code>.</strong></p>
+        <ul>
+            <li><strong><code>.container</code>:</strong> 100% wide on extra-small screens. Snaps to a fixed width starting at the <code>sm</code> breakpoint (576px).</li>
+            <li><strong><code>.container-sm</code>:</strong> 100% wide on extra-small screens. Snaps to a fixed width starting at the <code>sm</code> breakpoint (576px).</li>
+        </ul>
+        <p>You might be asking: <em>"Then why does container-sm even exist?"</em></p>
+        <p>It exists purely for naming consistency. Bootstrap provides <code>-md</code>, <code>-lg</code>, <code>-xl</code>, and <code>-xxl</code>. They included <code>-sm</code> so the pattern is complete, even though functionally, it doesn't do anything different than the base <code>.container</code> class.</p>
+    </div>
+
+    <!-- Interactive Demos -->
+    <div class="container-fluid mb-3">
+        <h2 class="text-center">Interactive Demonstration</h2>
+        <p class="text-center text-muted">Resize your browser window (or the preview pane) to see how these react!</p>
+    </div>
+
+    <!-- Demo 1: Default Container -->
+    <div class="container demo-container shadow-sm">
+        <h4><span class="code-snippet">.container</span></h4>
+        <p class="mb-0">I am 100% wide on tiny screens. Once the screen hits 576px (Small), I snap to a fixed width and stay centered.</p>
+    </div>
+
+    <!-- Demo 2: Container SM -->
+    <div class="container-sm demo-container shadow-sm">
+        <h4><span class="code-snippet">.container-sm</span></h4>
+        <p class="mb-0">Notice how I resize at the <strong>exact same time</strong> as the regular <code>.container</code> above? We are twins!</p>
+    </div>
+
+    <!-- Demo 3: Container MD -->
+    <div class="container-md demo-container shadow-sm" style="border-color: #198754; background-color: rgba(25, 135, 84, 0.1);">
+        <h4 style="color: #198754;"><span class="code-snippet bg-success">.container-md</span></h4>
+        <p class="mb-0">I stay 100% fluid (stretching edge-to-edge) <strong>longer</strong>. I only snap to a fixed width once the screen hits 768px (Medium).</p>
+    </div>
+
+    <!-- Demo 4: Container Fluid -->
+    <div class="container-fluid demo-container shadow-sm" style="border-color: #dc3545; background-color: rgba(220, 53, 69, 0.1);">
+        <h4 style="color: #dc3545;"><span class="code-snippet bg-danger">.container-fluid</span></h4>
+        <p class="mb-0">I ignore all breakpoints! I am always 100% wide, edge-to-edge, no matter how big the screen gets.</p>
+    </div>
+
+    <!-- Bootstrap JS (optional, but good practice) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple script to show the current window width for educational purposes
+        function updateWidthDisplay() {
+            const width = window.innerWidth;
+            let breakpointText = "";
+            
+            if (width < 576) breakpointText = "(Extra Small - xs)";
+            else if (width >= 576 && width < 768) breakpointText = "(Small - sm)";
+            else if (width >= 768 && width < 992) breakpointText = "(Medium - md)";
+            else if (width >= 992 && width < 1200) breakpointText = "(Large - lg)";
+            else if (width >= 1200 && width < 1400) breakpointText = "(Extra Large - xl)";
+            else breakpointText = "(Extra Extra Large - xxl)";
+
+            const title = document.querySelector('h2.text-center');
+            title.innerHTML = `Interactive Demo: Window Width is <span class="text-primary">${width}px</span> <small class="text-muted fs-5">${breakpointText}</small>`;
+        }
+
+        window.addEventListener('resize', updateWidthDisplay);
+        updateWidthDisplay(); // Init on load
+    </script>
+</body>
+</html>
