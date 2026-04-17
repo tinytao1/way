@@ -57,45 +57,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Comparison Section for shadow-sm -->
-    <div class="container bg-white p-5 rounded shadow-sm mb-5">
-        <h2 class="text-primary mb-4 text-center">Visualizing <code>shadow-sm</code></h2>
-        <p class="text-center text-muted mb-4">Shadows are subtle. Compare these three boxes to see the depth levels.</p>
-        
-        <div class="row text-center">
-            <!-- No Shadow -->
-            <div class="col-md-4">
-                <div class="shadow-none shadow-demo-box border">
-                    No Shadow
-                </div>
-                <small class="text-muted"><code>.shadow-none</code></small>
-            </div>
-            
-            <!-- Shadow SM -->
-            <div class="col-md-4">
-                <div class="shadow-sm shadow-demo-box border">
-                    Small Shadow
-                </div>
-                <small class="text-primary font-bold"><code>.shadow-sm</code></small>
-            </div>
-
-            <!-- Regular Shadow -->
-            <div class="col-md-4">
-                <div class="shadow shadow-demo-box border">
-                    Regular Shadow
-                </div>
-                <small class="text-muted"><code>.shadow</code></small>
-            </div>
-        </div>
-        
-        <div class="mt-4 p-3 bg-light border-start border-4 border-info">
-            <strong>Pro Tip:</strong> <code>shadow-sm</code> is designed to be very light. If you can't see it, look closely at the bottom edge of the box. It adds a 1px vertical offset that helps the element look slightly "raised" without being distracting.
-        </div>
-    </div>
-
-    <!-- Original Content below -->
-
     <!-- Standard Container for the Reading Content -->
     <div class="container bg-white p-5 rounded shadow-sm mb-5">
         <h1 class="display-5 text-primary mb-4">Understanding <code>container-sm</code></h1>
@@ -155,10 +116,54 @@ If you are compiling Bootstrap from source (using Sass), you can modify
 In your _custom.scss file:
     -->
     <!-- Demo 5: Container Fluid -->
-    <div class="container-fluid demo-container shadow-sm container-md-limit" style="border-color: #dc3545; background-color: rgba(220, 53, 69, 0.1);">
-        <h4 style="color: #dc3545;"><span class="code-snippet bg-danger">.container-fluid</span></h4>
+    <div class="container-fluid 
+                demo-container 
+                shadow-sm 
+                container-md-limit" 
+        style="border-color: #dc3545;
+                background-color: rgba(220, 53, 69, 0.1);">
+        <h4 style="color: #dc3545;"><span class="code-snippet bg-danger">.container-fluid .c-md-limit</span></h4>
         <p class="mb-0"> I am 100% wide, edge-to-edge, until 768px, then I'm fixed width at that point.</p>
     </div>
+
+    <!-- Original Content above -->
+
+    <!-- Comparison Section for demonstrating "shadow-sm" B5 class -->
+    <div class="container bg-white p-5 rounded shadow-sm mb-5">
+        <h2 class="text-primary mb-4 text-center">Visualizing <code>shadow-sm</code></h2>
+        <p class="text-center text-muted mb-4">Shadows are subtle. Compare these three boxes to see the depth levels.</p>
+        
+        <div class="row text-center">
+            <!-- No Shadow -->
+            <div class="col-md-4">
+                <div class="shadow-none shadow-demo-box border">
+                    No Shadow
+                </div>
+                <small class="text-muted"><code>.shadow-none</code></small>
+            </div>
+            
+            <!-- Shadow SM -->
+            <div class="col-md-4">
+                <div class="shadow-sm shadow-demo-box border">
+                    Small Shadow
+                </div>
+                <small class="text-primary font-bold"><code>.shadow-sm</code></small>
+            </div>
+
+            <!-- Regular Shadow -->
+            <div class="col-md-4">
+                <div class="shadow shadow-demo-box border">
+                    Regular Shadow
+                </div>
+                <small class="text-muted"><code>.shadow</code></small>
+            </div>
+        </div>
+        
+        <div class="mt-4 p-3 bg-light border-start border-4 border-info">
+            <strong>Pro Tip:</strong> <code>shadow-sm</code> is designed to be very light. If you can't see it, look closely at the bottom edge of the box. It adds a 1px vertical offset that helps the element look slightly "raised" without being distracting.
+        </div>
+    </div>
+
 
     <!-- Bootstrap JS (optional, but good practice) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
