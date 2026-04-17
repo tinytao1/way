@@ -37,6 +37,10 @@
             border-radius: 0.25rem;
             font-family: monospace;
         }
+        /* Custom limit "md" */
+        .container-md-limit {
+    max-width: 768px;
+}
     </style>
 </head>
 <body>
@@ -91,6 +95,12 @@
     <div class="container-fluid demo-container shadow-sm" style="border-color: #dc3545; background-color: rgba(220, 53, 69, 0.1);">
         <h4 style="color: #dc3545;"><span class="code-snippet bg-danger">.container-fluid</span></h4>
         <p class="mb-0">I ignore all breakpoints! I am always 100% wide, edge-to-edge, no matter how big the screen gets.</p>
+    </div>
+
+    <!-- Demo 5: Container Fluid -->
+    <div class="container-fluid demo-container shadow-sm container-md-limit" style="border-color: #dc3545; background-color: rgba(220, 53, 69, 0.1);">
+        <h4 style="color: #dc3545;"><span class="code-snippet bg-danger">.container-fluid</span></h4>
+        <p class="mb-0"> I am 100% wide, edge-to-edge, until 768px, then I'm fixed width at that point.</p>
     </div>
 
     <!-- Bootstrap JS (optional, but good practice) -->
