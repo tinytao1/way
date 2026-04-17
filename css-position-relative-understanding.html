@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding CSS position: relative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .demo-box {
+            transition: all 0.3s ease;
+        }
+        .relative-box {
+            position: relative;
+            background-color: #3b82f6;
+            color: white;
+            z-index: 10;
+        }
+        .ghost-box {
+            border: 2px dashed #cbd5e1;
+            background-color: #f1f5f9;
+        }
+        .absolute-child {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            background: #ef4444;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: white;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-10">
+            <h1 class="text-4xl font-bold text-slate-900 mb-4">CSS <code class="bg-slate-200 px-2 py-1 rounded">position: relative</code></h1>
+            <p class="text-lg text-slate-600">
+                In CSS, <code>position: relative</code> moves an element "relative" to its original position in the document flow, without affecting the space it originally occupied.
+            </p>
+        </header>
+
+        <section class="grid md:grid-cols-2 gap-8">
+            <!-- Concept 1: The "Ghost" Space -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600">1. It keeps its original "Gap"</h2>
+                <p class="text-sm text-slate-500 mb-6">
+                    Unlike <code>absolute</code>, which removes an item from the flow, <code>relative</code> keeps the original space reserved. Use the slider to offset the blue box.
+                </p>
+                
+                <div class="mb-4">
+                    <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Offset (Top/Left)</label>
+                    <input type="range" id="offsetSlider" min="0" max="50" value="20" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <div class="border rounded-lg p-4 bg-slate-50 overflow-hidden">
+                    <div class="bg-slate-200 p-4 mb-2 rounded text-xs text-slate-400">Static Element Above</div>
+                    
+                    <!-- Container for relative demo -->
+                    <div class="relative py-4">
+                        <div class="ghost-box w-32 h-20 rounded flex items-center justify-center text-[10px] text-slate-400 italic">
+                            Original Space
+                        </div>
+                        <div id="movingBox" class="relative-box w-32 h-20 rounded flex items-center justify-center font-bold shadow-lg absolute top-0 left-0" style="top: 20px; left: 20px;">
+                            Relative Box
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-200 p-4 mt-2 rounded text-xs text-slate-400">Static Element Below (Doesn't move!)</div>
+                </div>
+            </div>
+
+            <!-- Concept 2: The Anchor -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                <h2 class="text-xl font-semibold mb-4 text-red-500">2. It acts as an "Anchor"</h2>
+                <p class="text-sm text-slate-500 mb-6">
+                    This is the most common use. Setting a parent to <code>relative</code> ensures its <code>absolute</code> children stay contained inside it.
+                </p>
+
+                <div class="flex flex-col gap-4">
+                    <button id="toggleRelative" class="bg-slate-800 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition">
+                        Toggle Parent Relative: <span id="statusText" class="text-green-400 font-mono">ON</span>
+                    </button>
+
+                    <div id="parentContainer" class="h-40 border-2 border-dashed border-slate-300 rounded-lg p-4 relative bg-slate-50">
+                        <p class="text-[10px] text-slate-400 uppercase tracking-widest">Parent Container</p>
+                        
+                        <div class="absolute-child shadow-xl">
+                            Absolute Child
+                        </div>
+                    </div>
+                    <p id="explanation" class="text-xs text-slate-400 italic text-center">
+                        The red box is positioned at the bottom-right of the gray container.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-12 bg-slate-900 text-slate-300 p-8 rounded-2xl">
+            <h2 class="text-2xl font-bold text-white mb-6">Key Takeaways</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full p-1 text-xs">✓</span>
+                    <span><strong>Visual Offset:</strong> You can use <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code> to nudge the element.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full p-1 text-xs">✓</span>
+                    <span><strong>Space Preservation:</strong> It doesn't collapse the layout. Other elements act as if the relative item never moved.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full p-1 text-xs">✓</span>
+                    <span><strong>Z-Index:</strong> Relative elements can use <code>z-index</code> to stack on top of other static elements.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bg-blue-500 text-white rounded-full p-1 text-xs">✓</span>
+                    <span><strong>Reference Point:</strong> It defines the "coordinate system" for any nested elements using <code>position: absolute</code>.</span>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Offset Slider Logic
+        const slider = document.getElementById('offsetSlider');
+        const movingBox = document.getElementById('movingBox');
+        
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value + 'px';
+            movingBox.style.top = val;
+            movingBox.style.left = val;
+        });
+
+        // Anchor Toggle Logic
+        const toggleBtn = document.getElementById('toggleRelative');
+        const parent = document.getElementById('parentContainer');
+        const statusText = document.getElementById('statusText');
+        const explanation = document.getElementById('explanation');
+
+        let isRelative = true;
+
+        toggleBtn.addEventListener('click', () => {
+            isRelative = !isRelative;
+            if (isRelative) {
+                parent.style.position = 'relative';
+                statusText.innerText = 'ON';
+                statusText.className = 'text-green-400 font-mono';
+                explanation.innerText = "The red box is positioned at the bottom-right of the gray container.";
+            } else {
+                parent.style.position = 'static';
+                statusText.innerText = 'OFF';
+                statusText.className = 'text-red-400 font-mono';
+                explanation.innerText = "Parent is static! The red box now looks for the next relative ancestor (the body).";
+            }
+        });
+    </script>
+</body>
+</html>
