@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-Class vs Pseudo-Element</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 1. PSEUDO-CLASS ( : ) */
+        /* Targets the element when it is in a specific STATE (hovered) */
+        .box:hover {
+            background-color: #3b82f6; /* Blue 500 */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 2. PSEUDO-ELEMENT ( :: ) */
+        /* Targets a virtual PART of the element to add CONTENT */
+        .box::before {
+            content: "Pseudo-Element"; /* This text doesn't exist in HTML */
+            position: absolute;
+            top: -25px;
+            left: 0;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ef4444; /* Red 500 */
+            text-transform: uppercase;
+        }
+
+        .box {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6 text-slate-800">
+
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-2xl font-bold mb-4">Selector Comparison</h1>
+        
+        <p class="text-sm text-slate-600 mb-8">
+            Look at the box below. Notice how the label above it is <strong>injected via CSS</strong>, while the color change happens based on <strong>user interaction</strong>.
+        </p>
+
+        <!-- The actual HTML is very simple -->
+        <div class="box bg-slate-200 h-32 rounded-lg flex items-center justify-center cursor-pointer border-2 border-dashed border-slate-300">
+            <span class="font-medium">Hover over me!</span>
+        </div>
+
+        <div class="mt-8 space-y-4">
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded bg-red-100 flex-shrink-0 flex items-center justify-center text-red-600 font-bold">::</div>
+                <div>
+                    <p class="font-semibold text-sm">Pseudo-Element (::before)</p>
+                    <p class="text-xs text-slate-500">The red text "Pseudo-Element" above the box is created entirely in CSS. It's not in the HTML code.</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded bg-blue-100 flex-shrink-0 flex items-center justify-center text-blue-600 font-bold">:</div>
+                <div>
+                    <p class="font-semibold text-sm">Pseudo-Class (:hover)</p>
+                    <p class="text-xs text-slate-500">The blue background color only triggers when your mouse enters the box's area (a state change).</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-6 pt-6 border-t border-slate-100">
+            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">HTML Structure</p>
+            <pre class="bg-slate-900 text-slate-300 p-3 rounded mt-2 text-[11px] overflow-x-auto">
+&lt;div class="box"&gt;
+  &lt;span&gt;Hover over me!&lt;/span&gt;
+&lt;/div&gt;</pre>
+        </div>
+    </div>
+
+</body>
+</html>
