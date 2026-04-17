@@ -17,10 +17,10 @@
         /* 2. PSEUDO-ELEMENT ( :: ) */
         /* Targets a virtual PART of the element to add CONTENT */
         .box::before {
-            content: "Pseudo-Element"; /* This text doesn't exist in HTML */
+            content: "Yeah HERE!"; /* "Pseudo-Element";  This text doesn't exist in HTML */
             position: absolute;
             top: -25px;
-            left: 0;
+            /* left: 0;
             font-size: 0.75rem;
             font-weight: bold;
             color: #ef4444; /* Red 500 */
@@ -39,11 +39,13 @@
         <h1 class="text-2xl font-bold mb-4">Selector Comparison</h1>
         
         <p class="text-sm text-slate-600 mb-8">
-            Look at the box below. Notice how the label above it is <strong>injected via CSS</strong>, while the color change happens based on <strong>user interaction</strong>.
+            Look at the box below. Notice how the label above it is <strong>injected via CSS</strong>, 
+            while the color change happens based on <strong>user interaction</strong>.
         </p>
 
         <!-- The actual HTML is very simple -->
-        <div class="box bg-slate-200 h-32 rounded-lg flex items-center justify-center cursor-pointer border-2 border-dashed border-slate-300">
+        <div class="box bg-slate-200 h-32 rounded-lg flex items-center justify-center cursor-pointer
+         border-2 border-dashed border-slate-300">
             <span class="font-medium">Hover over me!</span>
         </div>
 
