@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  :root {
+    --main-bg: #fafafa;
+    --brand-red: #e63946;
+    /* New variable for the hover state */
+    --brand-hover: #1d3557; 
+    --main-font: 'Segoe UI', Tahoma, sans-serif;
+  }
+
+  body {
+    background-color: var(--main-bg);
+    font-family: var(--main-font);
+    padding-top: 50px;
+  }
+
+  p {
+    text-align: center;
+    color: var(--brand-red);
+    font-size: 1.5rem;
+    cursor: pointer;
+    /* This makes the color change smooth */
+    transition: color 0.3s ease;
+  }
+
+  /* When you hover over a paragraph, it swaps the variable */
+  p:hover {
+    color: var(--brand-hover);
+  }
+</style>
+</head>
+<body>
+
+<p>Hover over me!</p>
+<p id="para1">I change color too!</p>
+<p>Variables make this easy.</p>
+
+</body>
+</html>
